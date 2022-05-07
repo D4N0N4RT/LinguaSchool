@@ -13,10 +13,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name="teachers")
@@ -47,6 +49,9 @@ public class Teacher {
     private String patronymic = "";
 
     private int workExperience;
+
+    @OneToMany
+    private List<Student> students;
 
 //    @ManyToMany
 //    private List<Course> courses;
