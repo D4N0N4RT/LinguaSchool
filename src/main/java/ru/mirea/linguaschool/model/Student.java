@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 
 @Entity
@@ -39,7 +40,9 @@ public class Student {
     )
     private Long id;
 
+    @NotEmpty
     private String name;
+    @NotEmpty
     private String surname;
     private String patronymic;
 
