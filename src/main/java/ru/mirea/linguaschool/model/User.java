@@ -21,6 +21,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.Set;
@@ -48,6 +49,9 @@ public class User implements UserDetails {
 
     @NotBlank(message = "Пароль не может быть пустым")
     private String password;
+
+    @Transient
+    private String password2;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
