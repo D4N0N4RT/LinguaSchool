@@ -32,4 +32,6 @@ public class MainController {
         model.addAttribute("teachers", teachers);
         return "teachers";
     }
+
+
 }

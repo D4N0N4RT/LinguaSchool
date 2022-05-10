@@ -30,13 +30,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()//Отключаем поддержку csrf
+        http.csrf().disable()
                 .authorizeRequests() //Запрос на вход
                 .antMatchers("/login", "/registration", "/")
-                .permitAll() //Какие страницы могут быть доступны без авторизации
+                .permitAll()
                 .and()
                 .formLogin() //Форма логина
-                .loginPage("/login")//путь до страницы логина
+                .loginPage("/login")
                 .failureUrl("/login?error")
                 .defaultSuccessUrl("/", false)
                 .permitAll()

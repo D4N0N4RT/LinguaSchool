@@ -6,6 +6,7 @@ import ru.mirea.linguaschool.model.Teacher;
 import ru.mirea.linguaschool.repository.TeacherRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TeacherService {
@@ -30,6 +31,10 @@ public class TeacherService {
             return;
         }
         teacherRepository.save(teacher);
+    }
+
+    public Optional<Teacher> findTeacherById(long id) {
+        return teacherRepository.findById(id);
     }
 
     public List<Teacher> findAll() {

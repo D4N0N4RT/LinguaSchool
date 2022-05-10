@@ -50,7 +50,4 @@ public class Teacher {
 
     @OneToMany
     private List<Student> students;
-
-//    @ManyToMany
-//    private List<Course> courses;
 }

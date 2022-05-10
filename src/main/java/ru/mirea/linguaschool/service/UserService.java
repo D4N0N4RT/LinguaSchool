@@ -6,9 +6,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.mirea.linguaschool.model.Role;
 import ru.mirea.linguaschool.model.User;
 import ru.mirea.linguaschool.repository.UserRepository;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -32,6 +34,7 @@ public class UserService implements UserDetailsService {
     }
 
     public void saveUser(User user) {
+        user.setRoles(Collections.singleton(Role.USER));
         userRepository.save(user);
     }
 
