@@ -49,5 +49,8 @@ public class Teacher {
     private Language language;
 
     @OneToMany
-    private List<Student> students;
+    private List<User> students;
+
+    @OneToMany
+    private List<Review> reviews;
 }

@@ -41,7 +41,7 @@ public class AuthController {
 
         User userFromDB = userService.findByUsername(user.getUsername());
         if (userFromDB != null) {
-            model.addAttribute("userExistException", "Пользователь с таким ником уже существует");
+            model.addAttribute("userExistError", "Пользователь с таким ником уже существует");
             return "registration";
         }
 

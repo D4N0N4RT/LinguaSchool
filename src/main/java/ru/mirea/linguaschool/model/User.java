@@ -20,11 +20,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -47,8 +51,17 @@ public class User implements UserDetails {
     )
     private Long id;
 
-    private String firstName;
-    private String lastName;
+    @NotEmpty
+    private String name;
+    @NotEmpty
+    private String surname;
+
+    @OneToOne
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
+
+    @OneToMany
+    private List<Review> reviews;
 
     @Column(unique = true)
     private String email;
@@ -72,17 +85,17 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return roles;
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return username;
     }
 
     @Override

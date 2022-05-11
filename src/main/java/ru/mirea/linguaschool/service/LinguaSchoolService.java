@@ -1,15 +1,15 @@
 package ru.mirea.linguaschool.service;
 
-import ru.mirea.linguaschool.repository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.mirea.linguaschool.repository.TeacherRepository;
 
+@Service
 public class LinguaSchoolService {
     private final TeacherRepository teacherRepo;
-    private final StudentRepository studentRepo;
 
-    public LinguaSchoolService(TeacherRepository teacherRepo,
-                            StudentRepository studentRepo) {
+    @Autowired
+    public LinguaSchoolService(TeacherRepository teacherRepo) {
         this.teacherRepo = teacherRepo;
-        this.studentRepo = studentRepo;
     }
 }

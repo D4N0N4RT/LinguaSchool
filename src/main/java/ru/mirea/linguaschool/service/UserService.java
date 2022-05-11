@@ -38,11 +38,11 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public void updateUser(User user) {
+        userRepository.save(user);
     }
 
-    public List<User> findAllByUsername(String userName) {
-        return userRepository.findAllByUsername(userName);
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 }
