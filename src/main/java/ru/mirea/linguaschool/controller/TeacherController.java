@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.mirea.linguaschool.model.Language;
 import ru.mirea.linguaschool.model.Review;
 import ru.mirea.linguaschool.model.Teacher;
 import ru.mirea.linguaschool.service.TeacherService;
@@ -28,8 +29,9 @@ public class TeacherController {
         this.userService = userService;
     }
 
-    public String languageTeachers(Model model) {
-        List<Teacher> teachers = teacherService.findAll();
+    @RequestMapping("/{language}")
+    public String languageTeachers(Model model, @PathVariable Language language) {
+        List<Teacher> teachers = teacherService.findAllTeachersByLanguage(language);
         model.addAttribute("teachers", teachers);
         return "teachers";
     }

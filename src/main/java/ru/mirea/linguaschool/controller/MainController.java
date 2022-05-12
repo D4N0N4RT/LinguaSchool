@@ -2,7 +2,6 @@ package ru.mirea.linguaschool.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,13 +23,6 @@ public class MainController {
     @RequestMapping("/")
     public String index() {
         return "index";
-    }
-
-    @RequestMapping("/{language}")
-    public String languageTeachers(Model model, @PathVariable Language language) {
-        List<Teacher> teachers = teacherService.findAllTeachersByLanguage(language);
-        model.addAttribute("teachers", teachers);
-        return "teachers";
     }
 
 

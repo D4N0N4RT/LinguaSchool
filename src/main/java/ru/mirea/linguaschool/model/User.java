@@ -64,10 +64,8 @@ public class User implements UserDetails {
     private List<Review> reviews;
 
     @Column(unique = true)
+    @NotBlank(message = "Почта не может быть пустой")
     private String email;
-
-    @NotBlank(message = "Имя пользователя не может быть пустым")
-    private String username;
 
     @NotBlank(message = "Пароль не может быть пустым")
     private String password;
@@ -83,6 +81,8 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
+    private boolean isActive;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
@@ -95,27 +95,27 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return isActive;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return isActive;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return isActive;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return isActive;
     }
 
     public void setId(Long id) {

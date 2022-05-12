@@ -44,6 +44,6 @@ public class Review {
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
-    @Size(min = 10, max = 256, message = "Your message incorrect")
+    @Size(min = 10, max = 256, message = "Ваш отзыв некорректен")
     private String text;
 }
