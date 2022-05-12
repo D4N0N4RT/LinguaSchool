@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,9 +15,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(name = "reviews")
 @Getter
 @Setter
 @ToString
@@ -26,13 +29,13 @@ import javax.validation.constraints.Size;
 public class Review {
     @Id
     @SequenceGenerator(
-            name = "review_sequence",
-            sequenceName = "review_sequence",
+            name = "reviews_id_seq",
+            sequenceName = "reviews_id_seq",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "review_sequence"
+            generator = "reviews_id_seq"
     )
     private Long id;
 
@@ -46,4 +49,7 @@ public class Review {
 
     @Size(min = 10, max = 256, message = "Ваш отзыв некорректен")
     private String text;
+
+    @Column(name = "is_recommended")
+    private boolean isRecommended;
 }

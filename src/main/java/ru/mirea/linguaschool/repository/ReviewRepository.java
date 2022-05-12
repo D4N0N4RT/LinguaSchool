@@ -6,11 +6,13 @@ import ru.mirea.linguaschool.model.Review;
 import ru.mirea.linguaschool.model.Teacher;
 import ru.mirea.linguaschool.model.User;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
+@Transactional
 public interface ReviewRepository extends JpaRepository<Review, Long> {
-    public List<Review> findAllByTeacher(Teacher teacher);
+    List<Review> findAllByTeacher(Teacher teacher);
 
-    public List<Review> findAllByAuthor(User author);
+    List<Review> findAllByAuthor(User author);
 }

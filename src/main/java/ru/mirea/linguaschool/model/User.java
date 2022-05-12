@@ -15,7 +15,6 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,16 +37,16 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User implements UserDetails {
+public class User implements UserDetails{
     @Id
     @SequenceGenerator(
-            name = "user_sequence",
-            sequenceName = "user_sequence",
+            name = "users_id_seq",
+            sequenceName = "users_id_seq",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
+            generator = "users_id_seq"
     )
     private Long id;
 
@@ -63,9 +62,9 @@ public class User implements UserDetails {
     @OneToMany
     private List<Review> reviews;
 
-    @Column(unique = true)
     @NotBlank(message = "Почта не может быть пустой")
-    private String email;
+    @Column(name="email",unique = true)
+    private String username;
 
     @NotBlank(message = "Пароль не может быть пустым")
     private String password;
@@ -74,14 +73,14 @@ public class User implements UserDetails {
     private String password2;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
-            foreignKey = @ForeignKey(
-                    name = "user_fk")
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id")
     )
     @Enumerated(EnumType.STRING)
+    @Column(name = "role")
     private Set<Role> roles;
 
     private boolean isActive;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -89,13 +88,8 @@ public class User implements UserDetails {
     }
 
     @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
     public String getUsername() {
-        return email;
+        return username;
     }
 
     @Override
@@ -116,14 +110,5 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return isActive;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Id
-    public Long getId() {
-        return id;
     }
 }

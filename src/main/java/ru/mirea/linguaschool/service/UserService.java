@@ -1,6 +1,8 @@
 package ru.mirea.linguaschool.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,15 +17,12 @@ import java.util.List;
 
 @Service
 public class UserService implements UserDetailsService {
+    @Autowired
+    @Lazy
     private PasswordEncoder passwordEncoder;
-    private UserRepository userRepository;
 
     @Autowired
-    public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository) {
-        this.passwordEncoder = passwordEncoder;
-        this.userRepository = userRepository;
-    }
-
+    private UserRepository userRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username);
@@ -35,6 +34,7 @@ public class UserService implements UserDetailsService {
 
     public void saveUser(User user) {
         user.setRoles(Collections.singleton(Role.USER));
+        user.setActive(true);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
