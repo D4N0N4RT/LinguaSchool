@@ -11,11 +11,12 @@
 }
 /* Стиль для блока с логотипом */
 .imag{
+    margin-top: 1vh;
     flex: 1 1 40%;
     margin-left: 10px;
     display: flex;
     font-family: 'Jost','Oswald', serif;
-    font-size: 1.7em;
+    font-size: 1.9em;
     align-items: center;
 }
 /* Стиль для изображения */
@@ -69,7 +70,7 @@
     padding: 10px 15px;
     color: black;
     font-family: 'Jost','Oswald', serif;
-    font-size: 1.5em;
+    font-size: 1.6em;
     text-decoration: none;
     text-align: center;
     outline: none;
@@ -98,7 +99,7 @@
     border-bottom-left-radius: 10px;
 }
 .submenu li .box{
-    font-size: 1.25em;
+    font-size: 1.3em;
 }
 /* Появление подменю при наведении */
 ul li:hover .submenu {
@@ -115,7 +116,7 @@ ul li:hover .submenu {
 /* Заголовок */
 .main article span{
     font-family: 'Jost','Oswald', serif;
-    font-size: 1.7em;
+    font-size: 1.9em;
     font-weight: 200;
     text-decoration: none;
     color: black;
@@ -126,12 +127,61 @@ ul li:hover .submenu {
     grid-column-start: 2;
     grid-column-end: 3;
     font-family: 'Jost','Oswald', serif;
-    font-size: 1.25em;
+    font-size: 1.4em;
     text-decoration: none;
     color: black;
     margin-top: 3vh;
     padding: 5px 0;
     text-indent:10px;
+}
+/* Достоинства в виде карточек */
+.advance{
+    margin-top: 3vh;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    column-gap: 3vw;
+    row-gap: 2vh;
+}
+.card:nth-child(1){
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+.card:nth-child(2){
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+.card:nth-child(3){
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+.card:nth-child(4){
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+.card {
+    font-family: 'Jost','Oswald', serif;
+    padding: 5px;
+    position: relative;
+    background: linear-gradient(to bottom,yellow,lightyellow);
+    color: black;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.card:hover{
+    background: linear-gradient(to bottom,coral,lightcoral);
+}
+.card .upper {
+    text-align: center;
+    font-size: 1.5em;
+}
+.card .lower {
+    text-align: center;
+    font-size: 1em;
 }
 footer{
     width: 100%;
@@ -186,3 +236,4 @@ footer>h3{
         grid-auto-rows: minmax(10px,auto);
     }
 }
+
