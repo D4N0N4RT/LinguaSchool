@@ -1,7 +1,7 @@
 package ru.mirea.linguaschool.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.mirea.linguaschool.service.TeacherService;
 
@@ -14,10 +14,8 @@ public class MainController {
         this.teacherService = teacherService;
     }
 
-    @RequestMapping("/")
+    /*@GetMapping("/")
     public String index() {
         return "index";
-    }
-
-
+    }*/
 }

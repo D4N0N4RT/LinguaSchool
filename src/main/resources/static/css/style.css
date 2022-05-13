@@ -1,0 +1,188 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* Стиль для хэдера */
+.head{
+    display: flex;
+    background-color: yellow;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+/* Стиль для блока с логотипом */
+.imag{
+    flex: 1 1 40%;
+    margin-left: 10px;
+    display: flex;
+    font-family: 'Jost','Oswald', serif;
+    font-size: 1.7em;
+    align-items: center;
+}
+/* Стиль для изображения */
+.im{
+    border-radius: 50%;
+    /*margin:5px 15px;*/
+}
+/* Стиль для блока с меню */
+.menu-overlay{
+    display: flex;
+    flex: 1 1 60%;
+    justify-content: center;
+    align-items: center;
+}
+/* Стиль для кнопки вызова меню */
+#toggle-icon{
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(0,0,0,.6);
+    color: #fff;
+    z-index: 1;
+    cursor: pointer;
+    transition: .5s;
+}
+/* Стиль для меню */
+.menu_wrapper{
+    display: flex;
+    flex: 1 1 60%;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+}
+.menu_wrapper, .submenu{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: yellow;
+}
+/* Стиль для элементов меню */
+.menu_wrapper > li {
+    display: inline-block;
+    margin-right: 20px;
+    position: relative;
+}
+/* Стиль для элементов меню */
+.box{
+    flex: 1 1 25%;
+    display: block;
+    padding: 10px 15px;
+    color: black;
+    font-family: 'Jost','Oswald', serif;
+    font-size: 1.5em;
+    text-decoration: none;
+    text-align: center;
+    outline: none;
+    transition: .5s linear;
+}
+.box:hover{
+    color: crimson;
+}
+/* Стиль для подменю */
+.submenu{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    display: none;
+    background-color: yellow;
+}
+/* Последний элемент подменю */
+.submenu:last-child{
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.submenu li .box{
+    font-size: 1.25em;
+}
+/* Появление подменю при наведении */
+ul li:hover .submenu {
+    display: block;
+}
+/* Основной блок сайта */
+.main{
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-auto-rows: minmax(10px,auto);
+    margin-top: 10px;
+    margin-left: 15px;
+}
+/* Заголовок */
+.main article span{
+    font-family: 'Jost','Oswald', serif;
+    font-size: 1.7em;
+    font-weight: 200;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 25px;
+}
+/* Статья */
+.main article{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    font-family: 'Jost','Oswald', serif;
+    font-size: 1.25em;
+    text-decoration: none;
+    color: black;
+    margin-top: 3vh;
+    padding: 5px 0;
+    text-indent:10px;
+}
+footer{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    background: black;
+    margin-top: 25px;
+}
+footer .info{
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+footer .info h3{
+    color: grey;
+    font-size: 16px;
+    margin: 5px 0;
+    cursor: pointer;
+    font-family: 'Jost','Oswald', serif;
+}
+footer .socials{
+    flex: 1 1 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+footer .socials img{
+    cursor: pointer;
+}
+footer>h3{
+    font-family: 'Jost','Oswald', serif;
+    flex: 1 1 100%;
+    text-align: center;
+    color: grey;
+    font-size: 16px;
+}
+@keyframes fade {
+    /* Устанавливаем и изменяем степень прозрачности: */
+    from {
+        opacity: 0.5
+    }
+    to {
+        opacity: 1
+    }
+}
+@media (max-width: 1400px) and (min-width: 1000px){
+    .main{
+        grid-template-columns: .5fr 5fr .5fr;
+        grid-auto-rows: minmax(10px,auto);
+    }
+}
