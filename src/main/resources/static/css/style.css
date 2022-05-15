@@ -8,102 +8,114 @@
     background-color: yellow;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    padding-bottom: 1vh;
 }
 /* Стиль для блока с логотипом */
 .imag{
-    margin-top: 1vh;
     flex: 1 1 40%;
     margin-left: 10px;
+    margin-top: 2vh;
     display: flex;
     font-family: 'Jost','Oswald', serif;
-    font-size: 1.9em;
+    font-size: 2.1em;
     align-items: center;
 }
 /* Стиль для изображения */
 .im{
     border-radius: 50%;
-    /*margin:5px 15px;*/
 }
 /* Стиль для блока с меню */
 .menu-overlay{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0);
     display: flex;
-    flex: 1 1 60%;
     justify-content: center;
     align-items: center;
+    z-index:-1;
+}
+/* Стиль для блока с меню при активации */
+.menu-overlay#active{
+    background-color: rgba(0,0,0,.9);
+    z-index:1;
+}
+/* Эффектное появление меню при активации */
+.menu-overlay#active .menu_wrapper{
+    transform: scale(1);
 }
 /* Стиль для кнопки вызова меню */
 #toggle-icon{
-    display: none;
-    position: fixed;
-    top: 20px;
+    position: relative;
+    top: 15px;
     right: 20px;
-    background-color: rgba(0,0,0,.6);
-    color: #fff;
-    z-index: 1;
+    height: 54px;
+    background-color: rgba(0,0,0,.8);
+    color: yellow;
+    z-index: 10;
     cursor: pointer;
     transition: .5s;
 }
+#toggle-icon i{
+    font-size: 40px;
+    padding: 7px;
+}
+/* Ховер-эффект для кнопки вызова меню */
+#toggle-icon:hover{
+    color: rgba(255,255,255);
+}
 /* Стиль для меню */
 .menu_wrapper{
-    display: flex;
-    flex: 1 1 60%;
-    justify-content: space-around;
-    align-content: center;
-    align-items: center;
-}
-.menu_wrapper, .submenu{
     list-style: none;
-    margin: 0;
-    padding: 0;
-    background-color: yellow;
-}
-/* Стиль для элементов меню */
-.menu_wrapper > li {
-    display: inline-block;
-    margin-right: 20px;
-    position: relative;
-}
-/* Стиль для элементов меню */
-.box{
-    flex: 1 1 25%;
-    display: block;
-    padding: 10px 15px;
-    color: black;
-    font-family: 'Jost','Oswald', serif;
-    font-size: 1.6em;
-    text-decoration: none;
+    width: 100%;
     text-align: center;
-    outline: none;
-    transition: .5s linear;
+    transition: all .5s;
+    transform: scale(0);
 }
-.box:hover{
-    color: crimson;
+/* Стиль для элементов меню */
+.menu_wrapper li{
+    margin: 8px 0;
+}
+.menu_wrapper li .box{
+    cursor: pointer;
+    display: block;
+    font-size: 2.25em;
+    font-weight: 400;
+    text-decoration: none;
+    color: #fff;
+    transition: .5s;
+    font-family: 'Jost','Oswald', serif;
 }
 /* Стиль для подменю */
-.submenu{
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
+.submenu {
+    width: auto;
     z-index: 10;
     -webkit-transition: 0.5s ease-in-out;
     -moz-transition: 0.5s ease-in-out;
     -o-transition: 0.5s ease-in-out;
     transition: 0.5s ease-in-out;
-    display: none;
-    background-color: yellow;
-}
-/* Последний элемент подменю */
-.submenu:last-child{
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-}
-.submenu li .box{
-    font-size: 1.3em;
-}
-/* Появление подменю при наведении */
-ul li:hover .submenu {
     display: block;
+    text-align: center;
+}
+/* Стиль для элементов подменю */
+.submenu li .box{
+    font-size: 1.65em;
+}
+.submenu li{
+    margin: 5px 0;
+}
+/* Ховер-эффект для меню */
+.menu_wrapper>li .box:hover{
+    color: yellow;
+}
+/* Стиль для стрелки вызова подменю */
+#strelka{
+    display: none;
+    padding:0;
+    text-align: left;
+    justify-content: left;
 }
 /* Основной блок сайта */
 .main{
@@ -171,6 +183,8 @@ ul li:hover .submenu {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border-radius: 15px;
+    box-shadow: 3px 3px 1px rgba(0,0,0,0.9);
 }
 .card:hover{
     background: linear-gradient(to bottom,coral,lightcoral);
@@ -179,7 +193,7 @@ ul li:hover .submenu {
     margin-top: 2.5vh;
     flex: 30% 1 1;
     text-align: center;
-    font-size: 1.75em;
+    font-size: 1.85em;
 }
 .card .lower {
     flex: 70% 1 1;

@@ -3,6 +3,7 @@ package ru.mirea.linguaschool.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +18,7 @@ import ru.mirea.linguaschool.service.UserService;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/teachers")
 public class TeacherController {
     private final TeacherService teacherService;
@@ -29,7 +30,14 @@ public class TeacherController {
         this.userService = userService;
     }
 
-    @RequestMapping("/{language}")
+    @GetMapping()
+    public String getTeachers(Model model) {
+        List<Teacher> teachers = teacherService.findAll();
+        model.addAttribute("teachers", teachers);
+        return "teachers";
+    }
+
+    @GetMapping("/{language}")
     public String languageTeachers(Model model, @PathVariable Language language) {
         List<Teacher> teachers = teacherService.findAllTeachersByLanguage(language);
         model.addAttribute("teachers", teachers);

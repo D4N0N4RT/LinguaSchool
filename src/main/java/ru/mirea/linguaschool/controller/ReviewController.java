@@ -3,6 +3,7 @@ package ru.mirea.linguaschool.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,7 @@ import ru.mirea.linguaschool.service.UserService;
 import javax.validation.Valid;
 import java.util.Optional;
 
-@RestController
+@Controller
 public class ReviewController {
     private ReviewService reviewService;
     private UserService userService;

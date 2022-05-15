@@ -12,9 +12,4 @@ public class MainController {
     public MainController(TeacherService teacherService) {
         this.teacherService = teacherService;
     }
-
-    /*@GetMapping("/")
-    public String index() {
-        return "index";
-    }*/
 }

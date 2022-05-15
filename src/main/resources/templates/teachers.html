@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinguaSchool</title>
+    <link  href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
+    <link  href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+    <link  href="https://fonts.googleapis.com/css?family=Jost&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+</head>
+<body>
+<header class="head">
+    <div class="imag">
+        LinguaSchool
+        <div class="im"><img src="../static/img/globe.png" width="80" height="45" alt="LOGO"></div>
+    </div>
+    <div id="toggle-icon"><i class="material-icons">menu</i></div>
+    <div class="menu-overlay">
+        <ul class="menu_wrapper">
+            <li><a href="/index" class="box">Главная</a></li>
+            <li><a href="/teachers" class="box">Преподаватели<i id="strelka" class="material-icons">arrow_drop_down</i></a>
+                <ul class="submenu">
+                    <li><a href="/teachers/ENGLISH" class="box">Английский язык</a></li>
+                    <li><a href="/teachers/SPANISH" class="box">Испанский язык</a></li>
+                    <li><a href="/teachers/GERMAN" class="box">Немецкий язык</a></li>
+                    <li><a href="/teachers/FRENCH" class="box">Французский язык</a></li>
+                </ul>
+            </li>
+            <li><a href="/reviews" class="box">Отзывы</a></li>
+            <li><a href="/materials" class="box">Дополнительные материалы</a></li>
+        </ul>
+    </div>
+</header>
+<div>
+    <table>
+        <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Отчество</th>
+            <th>Опыт Работы</th>
+        </tr>
+        <tr th:each ="teacher : ${teachers}">
+            <td th:utext="${teacher.name}">...</td>
+            <td th:utext="${teacher.surname}">...</td>
+            <td th:utext="${teacher.patronymic}">...</td>
+            <td th:utext="${teacher.workExperience}">...</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

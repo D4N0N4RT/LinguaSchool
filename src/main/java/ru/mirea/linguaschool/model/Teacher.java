@@ -7,7 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.GenerationType;
 import javax.persistence.GeneratedValue;
@@ -46,6 +49,8 @@ public class Teacher {
 
     private int workExperience;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "language")
     private Language language;
 
     @OneToMany
