@@ -162,7 +162,7 @@ ul li:hover .submenu {
 }
 .card {
     font-family: 'Jost','Oswald', serif;
-    padding: 5px;
+    padding: 10px;
     position: relative;
     background: linear-gradient(to bottom,yellow,lightyellow);
     color: black;
@@ -176,12 +176,15 @@ ul li:hover .submenu {
     background: linear-gradient(to bottom,coral,lightcoral);
 }
 .card .upper {
+    margin-top: 2.5vh;
+    flex: 30% 1 1;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1.75em;
 }
 .card .lower {
+    flex: 70% 1 1;
     text-align: center;
-    font-size: 1em;
+    font-size: 1.2em;
 }
 footer{
     width: 100%;
