@@ -18,7 +18,7 @@
     <div id="toggle-icon"><i class="material-icons">menu</i></div>
     <div class="menu-overlay">
         <ul class="menu_wrapper">
-            <li><a href="/index" class="box">Главная</a></li>
+            <li><a href="/" class="box">Главная</a></li>
             <li><a href="/teachers" class="box">Преподаватели<i id="strelka" class="material-icons">arrow_drop_down</i></a>
                 <ul class="submenu">
                     <li><a href="/teachers/ENGLISH" class="box">Английский язык</a></li>
@@ -32,21 +32,35 @@
         </ul>
     </div>
 </header>
-<div>
-    <table>
-        <tr>
-            <th>Имя</th>
-            <th>Фамилия</th>
-            <th>Отчество</th>
-            <th>Опыт Работы</th>
-        </tr>
-        <tr th:each ="teacher : ${teachers}">
-            <td th:utext="${teacher.name}">...</td>
-            <td th:utext="${teacher.surname}">...</td>
-            <td th:utext="${teacher.patronymic}">...</td>
-            <td th:utext="${teacher.workExperience}">...</td>
-        </tr>
-    </table>
+<div class="teachers">
+    <div class="teacher_card" th:each="teacher : ${teachers}">
+        <img src="../static/img/photo.jpg"
+             alt="Elon">
+        <div class="info">
+            <h2 th:utext="${teacher.name}"></h2>
+            <h2 th:utext="${teacher.surname}"></h2>
+            <h3 th:utext="${teacher.language.toString()}"></h3>
+            <h4>Краткое описание учителя, чтобы узнать больше</h4>
+            <a th:href="@{/teachers/{id}/reviews(id=${teacher.id})}">Отзывы</a>
+            <button th:if="${user.teacher} == null">Подписаться</button>
+            <button th:if="${user.teacher} == teacher">Отписаться</button>
+        </div>
+    </div>
 </div>
+<footer>
+    <div class="info">
+        <h3>Реклама</h3>
+        <h3>О нас</h3>
+        <h3>Обратная связь</h3>
+        <h3>Пользовательское соглашение</h3>
+    </div>
+    <div class="socials">
+        <img src="icons8-twitter-60.png" alt="twi" onClick="location.href='https://twitter.com/?lang=ru'">
+        <img src="icons8-youtube-48.png" alt="you" onClick="location.href='https://www.youtube.com/'">
+        <img src="icons8-facebook-48.png" alt="face" onClick="location.href='https://ru-ru.facebook.com/'">
+        <img src="icons8-instagram-48.png" alt="insta" onClick="location.href='https://www.instagram.com/?hl=ru'">
+    </div>
+    <h3>Артюхин Даниил Кириллович - 2021. Все права защищены</h3>
+</footer>
 </body>
 </html>

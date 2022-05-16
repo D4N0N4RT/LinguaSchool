@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    font-family: 'Jost','Oswald', serif;
 }
 /* Стиль для хэдера */
 .head{
@@ -23,6 +24,23 @@
 /* Стиль для изображения */
 .im{
     border-radius: 50%;
+}
+.login{
+    text-align: right;
+    text-decoration: none;
+    position: relative;
+    padding: 5px;
+    right: 84px;
+    top: 15px;
+    height: 54px;
+    color: black;
+    font-size: 1.9em;
+    border-radius: 3px;
+}
+.login:hover{
+    cursor: pointer;
+    background: black;
+    color: yellow;
 }
 /* Стиль для блока с меню */
 .menu-overlay{
@@ -49,8 +67,8 @@
 /* Стиль для кнопки вызова меню */
 #toggle-icon{
     position: relative;
-    top: 15px;
     right: 20px;
+    top: 15px;
     height: 54px;
     background-color: rgba(0,0,0,.8);
     color: yellow;
@@ -252,5 +270,87 @@ footer>h3{
         grid-template-columns: .5fr 5fr .5fr;
         grid-auto-rows: minmax(10px,auto);
     }
+}
+/* Стиль для карт учителей */
+.teachers{
+    margin: 5vh 4vw 0;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+}
+.teacher_card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    max-width: 22vw;
+    padding: 15px;
+    margin: 5px;
+    border-radius: 4px;
+    background: linear-gradient(to bottom,lightyellow,yellow,darkorange);
+    z-index: 1;
+}
+.teacher_card img{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+}
+.teacher_card img#active{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 450px;
+    height: 600px;
+    border-radius: 4px;
+}
+.teacher_card .info{
+    display: flex;
+    color: black;
+    flex-direction: column;
+    align-items: center;
+    justify-content: normal;
+    padding: 10px;
+    z-index: 1;
+}
+.info h2{
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+    margin: 3px 0;
+}
+.info h3{
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 3px 0;
+}
+.info h4{
+    text-align: center;
+    font-size: 17px;
+    margin: 3px 0;
+}
+.info button, .info a{
+    cursor: pointer;
+    background: yellow;
+    padding: 6px 15px;
+    font-size: 20px;
+    margin: 3px 0;
+    border-radius: 2px;
+    border: 2px black;
+    text-decoration: none;
+}
+.info button:hover, .info a:hover{
+    box-shadow: 2px 2px 1px black;
+}
+.teacher_card:hover{
+    box-shadow: 3px 3px 7px rgba(0,0,0,0.9);
+}
+.teacher_card:hover .info{
+    display: flex;
 }
 

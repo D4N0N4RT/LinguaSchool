@@ -3,6 +3,8 @@ package ru.mirea.linguaschool.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.mirea.linguaschool.model.Language;
 import ru.mirea.linguaschool.model.Review;
 import ru.mirea.linguaschool.model.Teacher;
+import ru.mirea.linguaschool.model.User;
 import ru.mirea.linguaschool.service.TeacherService;
 import ru.mirea.linguaschool.service.UserService;
 
@@ -34,6 +37,12 @@ public class TeacherController {
     public String getTeachers(Model model) {
         List<Teacher> teachers = teacherService.findAll();
         model.addAttribute("teachers", teachers);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) userService.loadUserByUsername(auth.getName());
+        if (user == null)
+            model.addAttribute("user", null);
+        else
+            model.addAttribute("user", user);
         return "teachers";
     }
 
@@ -41,6 +50,12 @@ public class TeacherController {
     public String languageTeachers(Model model, @PathVariable Language language) {
         List<Teacher> teachers = teacherService.findAllTeachersByLanguage(language);
         model.addAttribute("teachers", teachers);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) userService.loadUserByUsername(auth.getName());
+        if (user == null)
+            model.addAttribute("user", null);
+        else
+            model.addAttribute("user", user);
         return "teachers";
     }
 
