@@ -32,20 +32,18 @@ public class AuthController {
 
     @PostMapping("/registration")
     public String addUser(@Valid User user, Model model) {
-
-        if (user.getPassword() != null && !user.getPassword().equals(user.getPassword2())) {
-            model.addAttribute("passwordEqualsError", "Пароли не совпадают");
-            return "registration";
-        }
-
         User userFromDB = userService.findByUsername(user.getUsername());
         if (userFromDB != null) {
             model.addAttribute("userExistError", "Пользователь с таким ником уже существует");
             return "registration";
         }
 
-        userService.saveUser(user);
+        if (user.getPassword() != null && !user.getPassword().equals(user.getPassword2())) {
+            model.addAttribute("passwordError", "Пароли не совпадают");
+            return "registration";
+        }
 
+        userService.saveUser(user);
         return "redirect:/login";
     }
 }

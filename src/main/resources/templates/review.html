@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinguaSchool</title>
+    <link  href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
+    <link  href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+    <link  href="https://fonts.googleapis.com/css?family=Jost&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/login.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="header">
+        <h3 class="sign-in">Оставьте отзыв</h3>
+    </div>
+    <div class="clear"></div>
+    <form th:action="@{/review/{id}(id=${teacher.id})}" method="post" class="login-form">
+        <div class="recommend">
+            <label for="yes">Рекомендую</label>
+            <input type="radio" id="yes" name="recommendation" value="yes" checked>
+            <label for="no">Не рекомендую</label>
+            <input type="radio" id="no" name="recommendation" value="no">
+        </div>
+        <div>
+            <textarea class="text-input" name="text" id="text" placeholder="Текст отзыва"></textarea>
+        </div>
+        <div>
+            <input type="submit" value="Отправить отзыв"/>
+        </div>
+        <div class="clear"></div>
+    </form>
+</div>
+</body>
+</html>

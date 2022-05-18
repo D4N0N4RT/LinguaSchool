@@ -69,7 +69,7 @@ form {
     height: 30px;
     position: absolute;
     background: #22272d;
-    top: 0px;
+    top: 0;
     left: 100%;
 }
 .user {
@@ -86,10 +86,10 @@ form {
     height: 30px;
     position: absolute;
     background: #22272d;
-    top: 0px;
+    top: 0;
     left: 100%;
 }
-input {
+input, textarea {
     width: 100%;
     padding: 5px;
     height: 40px;
@@ -97,14 +97,22 @@ input {
     margin: 5px 0;
     outline: none;
 }
-input[type="text"]:focus, input[type="password"]:focus {
+.text-input{
+    height: 120px;
+    scroll-behavior: auto;
+    background: transparent;
+    border: 2px solid #22272d;
+    padding-left: 4px;
+    color: #e6b333;
+}
+input[type="text"]:focus, textarea:focus, input[type="password"]:focus {
     border: 1px solid white;
     box-shadow: none;
 }
 .user-input:focus .user {
     background: white !important;
 }
-input[type="text"] {
+input[type="text"]{
     background: transparent;
     border: 2px solid #22272d;
     padding-left: 45px;
@@ -124,6 +132,31 @@ input[type="submit"] {
     font-size: 0.8em;
     cursor: pointer;
 }
+form span{
+    font-size: 0.9em;
+    color: #e6b333;
+    margin-top: 4px;
+    float: left;
+    padding: 3px 0;
+}
+.recommend {
+    display: flex;
+    flex-wrap: wrap;
+}
+.recommend label {
+    flex: 99% 1 1;
+    font-size: 0.9em;
+    color: #e6b333;
+    margin-top: 4px;
+    margin-left: 10px;
+    float: left;
+    padding: 3px 0;
+}
+.recommend input{
+    font-size: 1em;
+    flex: 1% 1 1;
+}
+/*
 input[type="radio"] {
     display: none;
 }
@@ -131,7 +164,7 @@ input[type="radio"] {
     width: 50px;
     height: 20px;
     border: 1px solid #22272d;
-    border-radius: 30px;
+    border-radius: 20px;
     margin-top: 10px;
     float: left;
     text-align: center;
@@ -139,38 +172,34 @@ input[type="radio"] {
     color: #e6b333;
     font-size: 0.65em;
     position: relative;
+    display: flex;
 }
 .radio-check label {
     margin: 0 2px;
+    font-size: 0.1em;
     cursor: pointer;
+    z-index: 1;
 }
 .radio-check .switch-selection {
-    display: block;
     position: absolute;
-    width: 11px;
-    height: 11px;
+    display: block;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background: #babbbd;
+    background: #e6b333;
     margin-top: -11px;
     margin-left: 11px;
     transition: 0.2s ease-out;
+    z-index: 2;
 }
 .radio-yes:checked ~ .switch-selection {
-    margin-left: 25px !important;
+    margin-left: 25px;
 }
 .check-label {
     font-size: 0.8em;
-    color: #7f8084;
+    color: #e6b333;
     margin-top: 10px;
     float: left;
     padding: 3px 0;
     margin-left: 10px;
-}
-.forgot-label {
-    font-size: 0.8em;
-    color: #7f8084;
-    margin-top: 10px;
-    float: right;
-    padding: 3px 0;
-    cursor: pointer;
-}
+}*/

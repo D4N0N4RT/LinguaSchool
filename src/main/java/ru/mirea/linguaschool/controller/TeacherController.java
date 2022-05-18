@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import ru.mirea.linguaschool.model.Language;
 import ru.mirea.linguaschool.model.Review;
 import ru.mirea.linguaschool.model.Teacher;
@@ -39,10 +38,7 @@ public class TeacherController {
         model.addAttribute("teachers", teachers);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) userService.loadUserByUsername(auth.getName());
-        if (user == null)
-            model.addAttribute("user", null);
-        else
-            model.addAttribute("user", user);
+        model.addAttribute("user", user);
         return "teachers";
     }
 
@@ -52,10 +48,7 @@ public class TeacherController {
         model.addAttribute("teachers", teachers);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) userService.loadUserByUsername(auth.getName());
-        if (user == null)
-            model.addAttribute("user", null);
-        else
-            model.addAttribute("user", user);
+        model.addAttribute("user", user);
         return "teachers";
     }
 

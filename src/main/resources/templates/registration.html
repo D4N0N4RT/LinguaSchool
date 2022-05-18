@@ -66,6 +66,7 @@
     </div>
     <div class="clear"></div>
     <form action="/registration" method="post" class="login-form">
+        <span th:if="${userExistError}" th:utext="${userExistError}"></span>
         <div>
             <label class="user" for="text">
                 <svg viewBox="0 0 32 32">
@@ -76,6 +77,7 @@
             </label>
             <input class="user-input" type="text" name="username" id="text" placeholder="Имя пользователя(E-mail)"  />
         </div>
+        <span th:if="${passwordError}" th:utext="${passwordError}"></span>
         <div>
             <label class="lock" for="password">
                 <svg viewBox="0 0 32 32">

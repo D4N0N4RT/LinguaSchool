@@ -42,8 +42,9 @@
             <h3 th:utext="${teacher.language.toString()}"></h3>
             <h4>Краткое описание учителя, чтобы узнать больше</h4>
             <a th:href="@{/teachers/{id}/reviews(id=${teacher.id})}">Отзывы</a>
-            <button th:if="${user.teacher} == null">Подписаться</button>
-            <button th:if="${user.teacher} == teacher">Отписаться</button>
+            <button th:if="${user.teacher == null}">Подписаться</button>
+            <button th:if="${user.teacher == teacher}">Отписаться</button>
+            <a th:href="@{/review/{id}(id=${teacher.id})}" th:if="${user.teacher == teacher}">Оставить отзыв</a>
         </div>
     </div>
 </div>

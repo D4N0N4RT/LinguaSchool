@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.mirea.linguaschool.model.Review;
 import ru.mirea.linguaschool.model.Teacher;
 import ru.mirea.linguaschool.model.User;
@@ -15,6 +17,7 @@ import ru.mirea.linguaschool.service.TeacherService;
 import ru.mirea.linguaschool.service.UserService;
 
 import javax.validation.Valid;
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -30,18 +33,28 @@ public class ReviewController {
         this.teacherService = teacherService;
     }
 
-    @PutMapping("/teachers/{id}/review")
-    public String addReview(@PathVariable long id, @Valid Review review) {
+    @RequestMapping("review/{id}")
+    public String review(@PathVariable long id, Model model) {
+        Optional<Teacher> teacher = teacherService.findTeacherById(id);
+        model.addAttribute("teacher", teacher.get());
+        return "review";
+    }
+
+    @PostMapping("/review/{id}")
+    public String addReview(@PathVariable long id, @Valid Review review,
+                            @RequestParam(name = "recommendation", defaultValue = "yes") String bool) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUsername(auth.getName());
         Optional<Teacher> teacher = teacherService.findTeacherById(id);
+        boolean recommendation = Boolean.parseBoolean(Objects.equals(bool, "yes") ? "true" : "false");
+        review.setRecommended(recommendation);
         review.setAuthor(user);
         review.setTeacher(teacher.get());
         reviewService.save(review);
-        user.getReviews().add(review);
+        /*user.getReviews().add(review);
         teacher.get().getReviews().add(review);
         teacherService.saveTeacher(teacher.get());
-        userService.saveUser(user);
-        return "redirect:/teachers/" + id;
+        userService.saveUser(user);*/
+        return "redirect:/teachers";
     }
 }
