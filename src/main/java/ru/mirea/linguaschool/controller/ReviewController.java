@@ -17,6 +17,7 @@ import ru.mirea.linguaschool.service.TeacherService;
 import ru.mirea.linguaschool.service.UserService;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -33,6 +34,13 @@ public class ReviewController {
         this.teacherService = teacherService;
     }
 
+    @RequestMapping("/reviews")
+    public String reviews(Model model) {
+        List<Review> reviews = reviewService.findAll();
+        model.addAttribute("reviews", reviews);
+        return "reviews";
+    }
+
     @RequestMapping("review/{id}")
     public String review(@PathVariable long id, Model model) {
         Optional<Teacher> teacher = teacherService.findTeacherById(id);
@@ -46,15 +54,13 @@ public class ReviewController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUsername(auth.getName());
         Optional<Teacher> teacher = teacherService.findTeacherById(id);
+        Review review1 = new Review();
         boolean recommendation = Boolean.parseBoolean(Objects.equals(bool, "yes") ? "true" : "false");
-        review.setRecommended(recommendation);
-        review.setAuthor(user);
-        review.setTeacher(teacher.get());
-        reviewService.save(review);
-        /*user.getReviews().add(review);
-        teacher.get().getReviews().add(review);
-        teacherService.saveTeacher(teacher.get());
-        userService.saveUser(user);*/
+        review1.setRecommended(recommendation);
+        review1.setAuthor(user);
+        review1.setTeacher(teacher.get());
+        review1.setText(review.getText());
+        reviewService.save(review1);
         return "redirect:/teachers";
     }
 }

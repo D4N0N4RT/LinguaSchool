@@ -22,6 +22,10 @@ public class ReviewService {
         reviewRepository.save(review);
     }
 
+    public List<Review> findAll() {
+        return reviewRepository.findAll();
+    }
+
     public List<Review> findAllByTeacher(Teacher teacher) {
         return reviewRepository.findAllByTeacher(teacher);
     }

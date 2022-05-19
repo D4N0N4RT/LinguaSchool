@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.GenerationType;
 import javax.persistence.GeneratedValue;
@@ -48,15 +49,61 @@ public class Teacher implements Serializable {
     private String surname;
     private String patronymic;
 
+    private int age;
+
+    @Column(name="work_experience")
     private int workExperience;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "language")
     private Language language;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "teacher")
     private List<User> students;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "teacher")
     private List<Review> reviews;
+
+    public String viewName() {
+        return "Учитель: " + surname + " " + name + " " + patronymic;
+    }
+
+    public String fullName() {
+        return surname + " " + name;
+    }
+
+    public String languageString() {
+        return language.toString() + " язык";
+    }
+
+    public String description() {
+        return "Возраст: " + years(age) + ", опыт работы: " + years(workExperience) + ", " + reviewsInfo();
+    }
+
+    public String years(int year) {
+        int ageLastNumber = year % 10;
+        boolean exclusion = (year % 100 >= 11) && (year % 100 <= 14);
+        String old = "";
+        if (ageLastNumber == 1 && year != 11)
+            old = " год";
+        else if(ageLastNumber == 0 || ageLastNumber >= 5 || year == 11)
+            old = " лет";
+        else if(ageLastNumber >= 2)
+            old = " года";
+        if (exclusion)
+            old = " лет";
+        return year + old;
+    }
+
+    public double reviewPercentage() {
+        double count = reviews.size();
+        double positive = reviews.stream().filter(Review::isRecommended).count();
+        return count == 0 ? 0 : positive/count;
+    }
+
+    public String reviewsInfo() {
+        long positive = reviews.stream().filter(Review::isRecommended).count();
+        return String.format("%.2f", reviewPercentage() * 100) + "% положительных отзывов(" + positive + " из " +
+                reviews.size() + ")";
+    }
 }

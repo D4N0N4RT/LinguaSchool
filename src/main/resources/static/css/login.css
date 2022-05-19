@@ -139,22 +139,59 @@ form span{
     float: left;
     padding: 3px 0;
 }
-.recommend {
+.rad-label {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    border-radius: 100px;
+    padding: 8px;
+    margin: 3px 0;
+    cursor: pointer;
+    transition: .3s;
 }
-.recommend label {
-    flex: 99% 1 1;
-    font-size: 0.9em;
-    color: #e6b333;
-    margin-top: 4px;
+.rad-label:hover,
+.rad-label:focus-within {
+    background: hsla(0, 0%, 80%, .14);
+}
+.rad-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    z-index: -1;
+}
+.rad-design {
+    width: 14px;
+    height: 14px;
+    border-radius: 100px;
+    background: linear-gradient(to right bottom, hsl(40, 94%, 60%), hsl(16, 88%, 54%));
+    position: relative;
+}
+.rad-design::before {
+    content: '';
+    display: inline-block;
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    background: hsl(0, 0%, 90%);
+    transform: scale(1.1);
+    transition: .3s;
+}
+.rad-input:checked+.rad-design::before {
+    transform: scale(0);
+}
+.rad-text {
+    color: hsl(40, 94%, 60%);
     margin-left: 10px;
-    float: left;
-    padding: 3px 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
+    transition: .3s;
 }
-.recommend input{
-    font-size: 1em;
-    flex: 1% 1 1;
+.rad-input:checked~.rad-text {
+    color: hsl(40, 94%, 50%);
 }
 /*
 input[type="radio"] {

@@ -19,6 +19,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -55,11 +56,11 @@ public class User implements UserDetails{
     @NotEmpty
     private String surname;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
     private List<Review> reviews;
 
     @NotBlank(message = "Почта не может быть пустой")
@@ -82,6 +83,9 @@ public class User implements UserDetails{
     @Column(name = "is_active")
     private boolean isActive;
 
+    public String fullName() {
+        return "Ученик: " + name + " " + surname;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

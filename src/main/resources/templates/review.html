@@ -16,12 +16,24 @@
     </div>
     <div class="clear"></div>
     <form th:action="@{/review/{id}(id=${teacher.id})}" method="post" class="login-form">
-        <div class="recommend">
+        <div>
+            <label class="rad-label">
+                <input type="radio" class="rad-input" id="yes" name="recommendation" value="yes" checked>
+                <div class="rad-design"></div>
+                <div class="rad-text">Рекомендую</div>
+            </label>
+            <label class="rad-label">
+                <input type="radio" class="rad-input" id="no" name="recommendation" value="no">
+                <div class="rad-design"></div>
+                <div class="rad-text">Не рекомендую</div>
+            </label>
+        </div>
+        <!--<div class="recommend">
             <label for="yes">Рекомендую</label>
             <input type="radio" id="yes" name="recommendation" value="yes" checked>
             <label for="no">Не рекомендую</label>
             <input type="radio" id="no" name="recommendation" value="no">
-        </div>
+        </div>-->
         <div>
             <textarea class="text-input" name="text" id="text" placeholder="Текст отзыва"></textarea>
         </div>
