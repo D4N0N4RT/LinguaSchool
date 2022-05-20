@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import ru.mirea.linguaschool.model.Teacher;
 import ru.mirea.linguaschool.model.User;
@@ -26,16 +27,24 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PutMapping("enroll/{id}")
-    public ResponseEntity<Teacher> enroll(@PathVariable long id) {
+    @PostMapping("enroll/{id}")
+    public String enroll(@PathVariable long id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUsername(auth.getName());
         Optional<Teacher> teacher = teacherService.findTeacherById(id);
         if (teacher.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            return "redirect:/teachers";
         }
         user.setTeacher(teacher.get());
-        userService.updateUser(user);
-        return ResponseEntity.ok(teacher.get());
+        //userService.updateUser(user);
+        return "redirect:/teachers";
+    }
+
+    @PostMapping("/expel")
+    public String expel() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
+        user.setTeacher(null);
+        return "redirect:/teachers";
     }
 }

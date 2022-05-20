@@ -54,13 +54,19 @@ public class ReviewController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUsername(auth.getName());
         Optional<Teacher> teacher = teacherService.findTeacherById(id);
-        Review review1 = new Review();
+        Review review1 = reviewService.findAll().stream().filter(review2 -> review2.getTeacher() == teacher.get())
+                .filter(review2 -> review2.getAuthor() == user).findFirst().orElse(null);
         boolean recommendation = Boolean.parseBoolean(Objects.equals(bool, "yes") ? "true" : "false");
+        if (review1 == null) {
+            review1 = new Review();
+            review1.setAuthor(user);
+            review1.setTeacher(teacher.get());
+            review1.setRecommended(recommendation);
+            review1.setText(review.getText());
+            reviewService.save(review1);
+        }
         review1.setRecommended(recommendation);
-        review1.setAuthor(user);
-        review1.setTeacher(teacher.get());
         review1.setText(review.getText());
-        reviewService.save(review1);
         return "redirect:/teachers";
     }
 }

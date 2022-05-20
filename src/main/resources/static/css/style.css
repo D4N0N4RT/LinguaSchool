@@ -285,18 +285,17 @@ footer>h3{
     justify-content: center;
     align-items: center;
     align-self: center;
-    max-width: 22vw;
+    max-width: 20vw;
     padding: 15px;
     margin: 8px;
     border-radius: 4px;
     background: linear-gradient(to bottom,yellow,darkorange);
 }
 .teacher_card img{
-    width: 300px;
-    height: 300px;
+    max-width: 16vw;
+    height: 16vw;
     object-fit: cover;
     border-radius: 50%;
-    cursor: pointer;
 }
 .teacher_card img#active{
     position: absolute;

@@ -8,7 +8,9 @@
     <link  href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <link  href="https://fonts.googleapis.com/css?family=Jost&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script defer src="../static/js/script.js"></script>
+    <script th:inline="javascript"  defer src="../static/js/query.js"></script>
 </head>
 <body>
 <header class="head">
@@ -43,8 +45,8 @@
             <h3 th:text="${teacher.languageString()}"></h3>
             <h4 th:text="${teacher.description()}"></h4>
             <a th:href="@{/teachers/{id}/reviews(id=${teacher.id})}">Отзывы</a>
-            <button th:if="${user.teacher == null}">Подписаться</button>
-            <button th:if="${user.teacher == teacher}">Отписаться</button>
+            <button th:if="${user.teacher == null}" id="enroll" th:onclick="'enroll(\'' + ${teacher.id} + '\');'">Подписаться</button>
+            <button th:if="${user.teacher == teacher}" id="expel" onclick="expel()">Отписаться</button>
             <button th:if="${user.teacher != teacher && user.teacher != null}" disabled>Подписаться</button>
             <a th:href="@{/review/{id}(id=${teacher.id})}" th:if="${user.teacher == teacher}">Оставить отзыв</a>
             <button th:if="${user.teacher != teacher && user.teacher != null}" disabled>Оставить отзыв</button>
