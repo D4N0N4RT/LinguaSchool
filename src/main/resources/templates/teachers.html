@@ -45,9 +45,9 @@
             <h3 th:text="${teacher.languageString()}"></h3>
             <h4 th:text="${teacher.description()}"></h4>
             <a th:href="@{/teachers/{id}/reviews(id=${teacher.id})}">Отзывы</a>
-            <button th:if="${user.teacher == null}" id="enroll" th:onclick="'enroll(\'' + ${teacher.id} + '\');'">Подписаться</button>
+            <button th:if="${user.teacher == null}" id="enroll" th:onclick="'enroll(\'' + ${teacher.id} + '\');'">Записаться</button>
             <button th:if="${user.teacher == teacher}" id="expel" onclick="expel()">Отписаться</button>
-            <button th:if="${user.teacher != teacher && user.teacher != null}" disabled>Подписаться</button>
+            <button th:if="${user.teacher != teacher && user.teacher != null}" disabled>Записаться</button>
             <a th:href="@{/review/{id}(id=${teacher.id})}" th:if="${user.teacher == teacher}">Оставить отзыв</a>
             <button th:if="${user.teacher != teacher && user.teacher != null}" disabled>Оставить отзыв</button>
         </div>

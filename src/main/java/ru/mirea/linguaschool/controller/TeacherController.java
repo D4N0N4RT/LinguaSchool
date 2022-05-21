@@ -52,15 +52,6 @@ public class TeacherController {
         return "teachers";
     }
 
-    /*@GetMapping("/{id}")
-    public ResponseEntity<Teacher> getTeacherById(Model model, @PathVariable long id) {
-        Optional<Teacher> teacher = teacherService.findTeacherById(id);
-        if(teacher.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-        return ResponseEntity.ok(teacher.get());
-    }*/
-
     @RequestMapping("/{id}/reviews")
     public String getReviewsByTeacher(Model model, @PathVariable long id) {
         Optional<Teacher> teacher = teacherService.findTeacherById(id);

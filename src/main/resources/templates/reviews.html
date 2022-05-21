@@ -38,8 +38,8 @@
         <div class="info">
             <h2 th:text="${review.author.fullName()}"></h2>
             <h2 th:text="${review.teacher.viewName()}"></h2>
-            <span th:if="${review.isRecommended() == true}">Рекомендую</span>
-            <span th:if="${review.isRecommended() == false}">Не рекомендую</span>
+            <span th:if="${review.isRecommended() == true}" id="approve">Оценка: Рекомендую</span>
+            <span th:if="${review.isRecommended() == false}" id="disapprove">Оценка: Не рекомендую</span>
             <div th:utext="${review.text}"></div>
         </div>
     </div>
