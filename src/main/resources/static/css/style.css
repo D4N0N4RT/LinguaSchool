@@ -265,14 +265,14 @@ footer>h3{
         opacity: 1
     }
 }
-@media (max-width: 1400px) and (min-width: 1000px){
+/*@media (max-width: 1400px) and (min-width: 1000px){
     .main{
         grid-template-columns: .5fr 5fr .5fr;
         grid-auto-rows: minmax(10px,auto);
     }
-}
+}*/
 /* Стиль для карт учителей */
-.teachers{
+.teachers, .reviews{
     margin: 5vh 3vw 0;
     display: flex;
     flex-wrap: wrap;
@@ -349,12 +349,7 @@ footer>h3{
 .teacher_card:hover, .review_card:hover{
     box-shadow: 3px 3px 7px rgba(0,0,0,0.9);
 }
-.reviews {
-    margin: 5vh 3vw 0;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 5px;
-}
+/* Review style */
 .review_card{
     position: relative;
     display: flex;
@@ -400,4 +395,50 @@ footer>h3{
     font-size: 20px;
     margin: 2px 0;
 }
+@media screen and (max-width: 1400px) and (min-width: 1000px){
+    .review_card {
+        flex: 28% 1 1;
+        max-width: none;
+        position: relative;
+        align-self: center;
+        padding: 12px;
+        margin: 7px;
+    }
+    .teacher_card {
+        position: relative;
+        align-self: center;
+        max-width: none;
+        flex: 28% 1 1;
+        padding: 12px;
+        margin: 8px;
+    }
+    .main{
+        grid-template-columns: .5fr 5fr .5fr;
+        grid-auto-rows: minmax(10px,auto);
+    }
+}
+@media screen and  (max-width: 1000px){
+    .review_card {
+        position: relative;
+        align-self: center;
+        flex: 43% 1 1;
+        max-width: none;
+        padding: 12px;
+        margin: 7px;
+    }
+    .teacher_card {
+        position: relative;
+        align-self: center;
+        flex: 43% 1 1;
+        max-width: none;
+        padding: 12px;
+        margin: 8px;
+    }
+    .main {
+        display: grid;
+        grid-template-columns: .2fr 5fr .2fr;
+        grid-auto-rows: minmax(10px, auto);
+    }
+}
+
 
