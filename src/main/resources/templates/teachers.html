@@ -45,11 +45,13 @@
             <h3 th:text="${teacher.languageString()}"></h3>
             <h4 th:text="${teacher.description()}"></h4>
             <a th:href="@{/teachers/{id}/reviews(id=${teacher.id})}">Отзывы</a>
-            <button th:if="${user.teacher == null}" id="enroll" th:onclick="'enroll(\'' + ${teacher.id} + '\');'">Записаться</button>
-            <button th:if="${user.teacher == teacher}" id="expel" onclick="expel()">Отписаться</button>
-            <button th:if="${user.teacher != teacher && user.teacher != null}" disabled>Записаться</button>
-            <a th:href="@{/review/{id}(id=${teacher.id})}" th:if="${user.teacher == teacher}">Оставить отзыв</a>
-            <button th:if="${user.teacher != teacher && user.teacher != null}" disabled>Оставить отзыв</button>
+            <button th:if="${user.teacher == null && role == false}" id="enroll"
+                    th:onclick="'enroll(\'' + ${teacher.id} + '\');'">Записаться</button>
+            <button th:if="${user.teacher == teacher && role == false}" id="expel" onclick="expel()">Отписаться</button>
+            <button th:if="${role == true}" th:onclick="'fire(\'' + ${teacher.id} + '\');'">Уволить учителя</button>
+            <button th:if="${user.teacher != teacher && user.teacher != null && role == false}" disabled>Записаться</button>
+            <a th:href="@{/review/{id}(id=${teacher.id})}" th:if="${user.teacher == teacher && role == false}">Оставить отзыв</a>
+            <button th:if="${user.teacher != teacher && user.teacher != null && role == false}" disabled>Оставить отзыв</button>
         </div>
     </div>
 </div>
@@ -61,12 +63,12 @@
         <h3>Пользовательское соглашение</h3>
     </div>
     <div class="socials">
-        <img src="icons8-twitter-60.png" alt="twi" onClick="location.href='https://twitter.com/?lang=ru'">
-        <img src="icons8-youtube-48.png" alt="you" onClick="location.href='https://www.youtube.com/'">
-        <img src="icons8-facebook-48.png" alt="face" onClick="location.href='https://ru-ru.facebook.com/'">
-        <img src="icons8-instagram-48.png" alt="insta" onClick="location.href='https://www.instagram.com/?hl=ru'">
+        <img src="../static/img/icons8-twitter-60.png" alt="twi" onClick="location.href='https://twitter.com/?lang=ru'">
+        <img src="../static/img/icons8-youtube-48.png" alt="you" onClick="location.href='https://www.youtube.com/'">
+        <img src="../static/img/icons8-facebook-48.png" alt="face" onClick="location.href='https://ru-ru.facebook.com/'">
+        <img src="../static/img/icons8-instagram-48.png" alt="insta" onClick="location.href='https://www.instagram.com/?hl=ru'">
     </div>
-    <h3>Артюхин Даниил Кириллович - 2021. Все права защищены</h3>
+    <h3>Артюхин Даниил Кириллович - 2022. Все права защищены</h3>
 </footer>
 </body>
 </html>

@@ -7,14 +7,16 @@
     <link  href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
     <link  href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <link  href="https://fonts.googleapis.com/css?family=Jost&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
-    <script defer src="../static/js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="/static/js/script.js"></script>
+    <script th:inline="javascript"  defer src="/static/js/query.js"></script>
 </head>
 <body>
 <header class="head">
     <div class="imag">
         LinguaSchool
-        <div class="im"><img src="../static/img/globe.png" width="80" height="45" alt="LOGO"></div>
+        <div class="im"><img src="/static/img/globe.png" width="80" height="45" alt="LOGO"></div>
     </div>
     <div id="toggle-icon" onclick="clicker(this)"><i class="material-icons">menu</i></div>
     <div class="menu-overlay">
@@ -52,12 +54,12 @@
         <h3>Пользовательское соглашение</h3>
     </div>
     <div class="socials">
-        <img src="icons8-twitter-60.png" alt="twi" onClick="location.href='https://twitter.com/?lang=ru'">
-        <img src="icons8-youtube-48.png" alt="you" onClick="location.href='https://www.youtube.com/'">
-        <img src="icons8-facebook-48.png" alt="face" onClick="location.href='https://ru-ru.facebook.com/'">
-        <img src="icons8-instagram-48.png" alt="insta" onClick="location.href='https://www.instagram.com/?hl=ru'">
+        <img src="/static/img/icons8-twitter-60.png" alt="twi" onClick="location.href='https://twitter.com/?lang=ru'">
+        <img src="/static/img/icons8-youtube-48.png" alt="you" onClick="location.href='https://www.youtube.com/'">
+        <img src="/static/img/icons8-facebook-48.png" alt="face" onClick="location.href='https://ru-ru.facebook.com/'">
+        <img src="/static/img/icons8-instagram-48.png" alt="insta" onClick="location.href='https://www.instagram.com/?hl=ru'">
     </div>
-    <h3>Артюхин Даниил Кириллович - 2021. Все права защищены</h3>
+    <h3>Артюхин Даниил Кириллович - 2022. Все права защищены</h3>
 </footer>
 </body>
 </html>

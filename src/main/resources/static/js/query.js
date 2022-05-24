@@ -24,4 +24,15 @@ function enroll(id) {
     return false;
 }
 
+function fire(id) {
+    $.ajax({
+        method: "POST",
+        url: '/admin/del/' + id,
+        data: null,
+        success: function(response) {
+            location.reload();
+        }
+    });
+    return false;
+}
 //$('#enroll').on('click', expel());

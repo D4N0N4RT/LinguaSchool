@@ -18,6 +18,10 @@ public class ReviewService {
         this.reviewRepository = reviewRepository;
     }
 
+    public void delete(Review review) {
+        reviewRepository.delete(review);
+    }
+
     public void save(Review review) {
         reviewRepository.save(review);
     }

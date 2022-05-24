@@ -8,7 +8,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import ru.mirea.linguaschool.model.Teacher;
 import ru.mirea.linguaschool.model.User;
 import ru.mirea.linguaschool.service.TeacherService;
@@ -33,11 +32,11 @@ public class UserController {
         User user = userService.findByUsername(auth.getName());
         Optional<Teacher> teacher = teacherService.findTeacherById(id);
         if (teacher.isEmpty()) {
-            return "redirect:/teachers";
+            return "index";
         }
         user.setTeacher(teacher.get());
         //userService.updateUser(user);
-        return "redirect:/teachers";
+        return "teachers";
     }
 
     @PostMapping("/expel")
@@ -45,6 +44,6 @@ public class UserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUsername(auth.getName());
         user.setTeacher(null);
-        return "redirect:/teachers";
+        return "teachers";
     }
 }

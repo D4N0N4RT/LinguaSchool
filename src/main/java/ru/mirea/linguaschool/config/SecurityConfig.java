@@ -25,8 +25,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests() //Запрос на вход
-                .antMatchers("/login", "/registration", "/", "/restore/**", "/static/**")
+                .antMatchers("/login", "/registration", "/", "/static/**")
                 .permitAll()
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin() //Форма логина

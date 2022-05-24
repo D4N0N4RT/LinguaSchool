@@ -5,9 +5,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.mirea.linguaschool.model.Review;
 import ru.mirea.linguaschool.model.Teacher;
@@ -34,14 +34,14 @@ public class ReviewController {
         this.teacherService = teacherService;
     }
 
-    @RequestMapping("/reviews")
+    @GetMapping("/reviews")
     public String reviews(Model model) {
         List<Review> reviews = reviewService.findAll();
         model.addAttribute("reviews", reviews);
         return "reviews";
     }
 
-    @RequestMapping("review/{id}")
+    @GetMapping("review/{id}")
     public String review(@PathVariable long id, Model model) {
         Optional<Teacher> teacher = teacherService.findTeacherById(id);
         model.addAttribute("teacher", teacher.get());
