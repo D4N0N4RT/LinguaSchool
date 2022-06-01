@@ -51,6 +51,8 @@ public class TeacherController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) userService.loadUserByUsername(auth.getName());
         model.addAttribute("user", user);
+        Set<Role> roles = user.getRoles();
+        model.addAttribute("role", roles.contains(Role.ADMIN));
         return "teachers";
     }
 
